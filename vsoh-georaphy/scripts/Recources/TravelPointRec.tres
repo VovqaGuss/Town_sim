@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="TravelPoint" format=3 uid="uid://rtf6stdwxkxa"]
+
+[ext_resource type="Script" uid="uid://5hg8vtpkjqtv" path="res://scripts/Recources/TravelPoint.gd" id="1_oi4pl"]
+
+[resource]
+script = ExtResource("1_oi4pl")
+position = Vector2(9.32, 5.37)
+metadata/_custom_type_script = "uid://5hg8vtpkjqtv"

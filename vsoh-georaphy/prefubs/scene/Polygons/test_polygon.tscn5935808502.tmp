@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bivfh1aoxy3rp"]
+
+[ext_resource type="Script" uid="uid://dtm1663dvdnbh" path="res://scripts/classes/TravelPoint/travle_node.gd" id="1_fh7kg"]
+[ext_resource type="Script" uid="uid://bwitddn0b2hwk" path="res://scripts/classes/TravelPoint/TravelEdge/travel_edge.gd" id="2_n7mtj"]
+[ext_resource type="PackedScene" uid="uid://br1el582c6ei1" path="res://prefubs/scene/Vahicles/private_vahicle.tscn" id="3_urinb"]
+
+[node name="TestPolygon" type="Node2D" unique_id=1445130733]
+
+[node name="TravelNode" type="Marker2D" parent="." unique_id=1760861071 node_paths=PackedStringArray("availeble_points")]
+position = Vector2(82, 66)
+script = ExtResource("1_fh7kg")
+availeble_points = [NodePath("../@Marker2D@115099")]
+metadata/_custom_type_script = "uid://dtm1663dvdnbh"
+
+[node name="@Marker2D@115099" type="Marker2D" parent="." unique_id=819280849 node_paths=PackedStringArray("availeble_points")]
+position = Vector2(144, 440)
+script = ExtResource("1_fh7kg")
+availeble_points = [NodePath("../@Marker2D@115625")]
+
+[node name="@Line2D@115101" type="Line2D" parent="." unique_id=1931882986]
+points = PackedVector2Array(82, 66, 144, 440)
+script = ExtResource("2_n7mtj")
+
+[node name="@Marker2D@115625" type="Marker2D" parent="." unique_id=725290103]
+position = Vector2(912, 368)
+script = ExtResource("1_fh7kg")
+
+[node name="@Line2D@115627" type="Line2D" parent="." unique_id=1416885363]
+points = PackedVector2Array(144, 440, 912, 368)
+script = ExtResource("2_n7mtj")
+
+[node name="PrivateVahicle" parent="." unique_id=661784596 node_paths=PackedStringArray("start_point") instance=ExtResource("3_urinb")]
+position = Vector2(328, 72)
+start_point = NodePath("../TravelNode")

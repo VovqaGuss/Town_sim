@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://br1el582c6ei1"]
+
+[ext_resource type="Script" uid="uid://du0x2il84vcna" path="res://scripts/classes/Vehicle/PrivateVehicle/private_vahicle_scr.gd" id="1_oufrr"]
+[ext_resource type="Texture2D" uid="uid://dwg68uoxlsbus" path="res://recousres/sprites/shelds/Car.png" id="2_poc4b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quss6"]
+size = Vector2(60, 26)
+
+[node name="PrivateVahicle" type="Node2D" unique_id=575774730]
+script = ExtResource("1_oufrr")
+metadata/_custom_type_script = "uid://du0x2il84vcna"
+
+[node name="Body" type="Node2D" parent="." unique_id=969850357]
+rotation = -1.5707964
+
+[node name="BodySprite" type="Sprite2D" parent="Body" unique_id=1513419861]
+texture = ExtResource("2_poc4b")
+hframes = 2
+vframes = 2
+
+[node name="GlassesSprite" type="Sprite2D" parent="Body" unique_id=144168019]
+texture = ExtResource("2_poc4b")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Headlights" type="Sprite2D" parent="Body" unique_id=2073911177]
+texture = ExtResource("2_poc4b")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="HeartBox" type="Area2D" parent="." unique_id=1955383380]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeartBox" unique_id=991814526]
+shape = SubResource("RectangleShape2D_quss6")
+debug_color = Color(9.62615e-07, 0.6037063, 0.68016356, 0.41960785)
+
+[node name="RayCasts" type="Node2D" parent="." unique_id=1040995938]
+rotation = -3.1415925
+
+[node name="ObstacleAhead" type="RayCast2D" parent="RayCasts" unique_id=1974707689]
+position = Vector2(-28, 0)
+target_position = Vector2(-27, 0)

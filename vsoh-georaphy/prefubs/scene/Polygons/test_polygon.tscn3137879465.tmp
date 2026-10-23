@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bivfh1aoxy3rp"]
+
+[ext_resource type="Script" uid="uid://dtm1663dvdnbh" path="res://scripts/classes/TravelPoint/travle_point.gd" id="2_n7mtj"]
+[ext_resource type="Script" uid="uid://bwitddn0b2hwk" path="res://scripts/classes/TravelPoint/TravelEdge/travel_edge.gd" id="3_dm12r"]
+
+[node name="TestPolygon" type="Node2D" unique_id=1445130733]
+
+[node name="TravelPoint" type="Marker2D" parent="." unique_id=2078706225]
+position = Vector2(128, 128)
+script = ExtResource("2_n7mtj")
+metadata/_custom_type_script = "uid://dtm1663dvdnbh"
+
+[node name="TravelPoint2" type="Marker2D" parent="." unique_id=845649469]
+position = Vector2(320, 128)
+script = ExtResource("2_n7mtj")
+metadata/_custom_type_script = "uid://dtm1663dvdnbh"
+
+[node name="TravelPoint3" type="Marker2D" parent="." unique_id=512838240]
+position = Vector2(216, 56)
+script = ExtResource("2_n7mtj")
+metadata/_custom_type_script = "uid://dtm1663dvdnbh"
+
+[node name="TravelPoint4" type="Marker2D" parent="." unique_id=1273761781]
+position = Vector2(216, 200)
+script = ExtResource("2_n7mtj")
+metadata/_custom_type_script = "uid://dtm1663dvdnbh"
+
+[node name="TravelEdge" type="Line2D" parent="." unique_id=20923555]
+position = Vector2(128, 128)
+points = PackedVector2Array(0, 0, 88, 72)
+width = 1.88
+script = ExtResource("3_dm12r")
+metadata/_custom_type_script = "uid://bwitddn0b2hwk"
+
+[node name="TravelEdge2" type="Line2D" parent="." unique_id=755785409]
+position = Vector2(128, 128)
+points = PackedVector2Array(88, 72, 192, 0)
+width = 1.88
+script = ExtResource("3_dm12r")
+metadata/_custom_type_script = "uid://bwitddn0b2hwk"
+
+[node name="TravelEdge3" type="Line2D" parent="." unique_id=826198040]
+position = Vector2(256, 256)
+points = PackedVector2Array(-40, -200, 64, -128)
+width = 1.88
+script = ExtResource("3_dm12r")
+metadata/_custom_type_script = "uid://bwitddn0b2hwk"
+
+[node name="TravelEdge4" type="Line2D" parent="." unique_id=383674892]
+position = Vector2(512, 512)
+points = PackedVector2Array(-384, -384, -296, -456)
+width = 1.88
+script = ExtResource("3_dm12r")
+metadata/_custom_type_script = "uid://bwitddn0b2hwk"
+
+[node name="TravelEdge5" type="Line2D" parent="." unique_id=1406049221]
+position = Vector2(256, 256)
+points = PackedVector2Array(-128, -128, 64, -128)
+width = 1.88
+script = ExtResource("3_dm12r")
+metadata/_custom_type_script = "uid://bwitddn0b2hwk"
+
+[node name="TravelEdge6" type="Line2D" parent="." unique_id=1108852754]
+points = PackedVector2Array(216, 56, 216, 200)
+width = 2.0
+script = ExtResource("3_dm12r")
+metadata/_custom_type_script = "uid://bwitddn0b2hwk"
