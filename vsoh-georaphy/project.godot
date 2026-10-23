@@ -16,16 +16,13 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalConstns="*uid://du4tegg76jx5i"
+GlobalConstns="uid://du4tegg76jx5i"
+GlobalFunc="*uid://c1mctey7bypn1"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/J-Gizmos/plugin.cfg")
 
 [global_group]
 

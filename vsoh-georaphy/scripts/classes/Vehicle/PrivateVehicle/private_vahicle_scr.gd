@@ -7,10 +7,12 @@ extends Node2D
 
 var road_network_manager : RoadNetworkManager
 var marchrute : Array[int]
+var current_target : int
 
 func _ready() -> void:
 	_setup_road_manager()
-	_create_marchrute(starter_point_idx, final_point_idx)
+	marchrute = _create_marchrute(starter_point_idx, final_point_idx)
+	current_target = marchrute.front()
 
 func _setup_road_manager() -> void:
 	road_network_manager = get_parent().get_tree().get_first_node_in_group("RoadManager")
@@ -30,19 +32,87 @@ func _setup_road_manager() -> void:
 	#current_point = point
 	print_rich("[b][color=green]", self.name, "	: Road manager was founded! And point was successfully getted![/color][/b]")
 
-func _create_marchrute(start_idx : int , final_idx : int): #Возвращает массив с индексами точек маршрута
+func _create_marchrute(start_idx : int , final_idx : int) -> Array[int]: #Возвращает массив с индексами точек маршрута
+	#ТУТ СУКА НЕ БУДЕТ ОБЪЕКТОВ ТОЛЬКО ИНДЕКСЫ!!!!! 😡
+	#ИЗУЧИ УЖЕ ДО КОНЦА ЭТОТ КОД БЛЯТЬ!
 	# 1. Инициализация
-	var visited: Array[int] = []
+	var visited : Array[int] = []
 	var distance = {}
+	var parents = {}
+	var compiled_marchrute : Array[int] = []
 	
-	for i in range(road_network_manager.points.size()): #Заполняем массив бесконечностями
+	
+	
+	for i in range(road_network_manager.points.size()):
 		distance[i] = INF
 	
-	print(distance)
-	
-	var current_node: int = start_idx
-	
-	var neighbors = road_network_manager.point_by_indx(current_node).next_points #Получеам соседей текущей ноды
-	print(neighbors)
 	
 	
+	distance[start_idx] = 0
+	var current_node : int = start_idx
+	
+	
+	
+	if current_node == final_idx:
+		push_error("Маршрут не может строится к начальной точке!")
+		return []
+	
+	while current_node != final_idx:
+		
+		var neigbors : Array[int] = road_network_manager.point_by_indx(current_node).next_points #Индексы соседей текущего узла
+		
+		for neigbor in neigbors:
+			
+			var new_dist = distance[current_node] + road_network_manager.point_by_indx(current_node).position.distance_to(road_network_manager.point_by_indx(neigbor).position)
+			
+			if new_dist < distance[neigbor]:
+				distance[neigbor] = new_dist
+				parents[neigbor] = current_node
+		
+		visited.append(current_node)
+		
+		var min_dist = INF
+		var next_node = -1 #ПИЗДА КАКАЯ ВАЖНАЯ ПЕРЕМЕННАЯ
+		
+		for node_idx in distance:
+			
+			if node_idx in visited:
+				continue
+			
+			
+			if distance[node_idx] < min_dist:
+				min_dist = distance[node_idx]
+				next_node = node_idx
+		
+		if next_node == -1:
+			print("Путь не найден!")
+			break
+		
+		current_node = next_node
+	
+	
+	
+	var curr = final_idx
+	
+	while curr != start_idx:
+		
+		compiled_marchrute.append(curr)
+		curr = parents[curr]
+	
+	compiled_marchrute.append(start_idx)
+	compiled_marchrute.reverse()
+	
+	
+	
+	print("Final march : ", compiled_marchrute)
+	GlobalFunc.stack_trace()
+	return compiled_marchrute
+
+func _process(delta: float) -> void:
+	var velocity = (road_network_manager.point_by_indx(current_target).position - position).normalized() * max_speed
+	position += velocity * delta
+	
+	look_at(road_network_manager.point_by_indx(current_target).position)
+	
+	if road_network_manager.point_by_indx(current_target).position.distance_to(position) < 3.5:
+		current_target = marchrute.pop_front()

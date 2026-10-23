@@ -7,8 +7,8 @@
 [sub_resource type="Resource" id="Resource_urinb"]
 script = ExtResource("2_urinb")
 name = "Point 0"
-position = Vector2(412.58, 25)
-next_points = Array[int]([1])
+position = Vector2(411.765, 25)
+next_points = Array[int]([1, 2, 3])
 
 [sub_resource type="Resource" id="Resource_dm12r"]
 script = ExtResource("2_urinb")
@@ -25,18 +25,42 @@ next_points = Array[int]([3, 0])
 [sub_resource type="Resource" id="Resource_pqlhq"]
 script = ExtResource("2_urinb")
 name = "Point 3"
-position = Vector2(179.425, 304)
-next_points = Array[int]([4, 1, 0])
+position = Vector2(179.675, 304)
+next_points = Array[int]([4, 1, 0, 6])
+
+[sub_resource type="Resource" id="Resource_khdv5"]
+script = ExtResource("2_urinb")
+name = "Point 4"
+position = Vector2(250, 440)
+next_points = Array[int]([5])
+
+[sub_resource type="Resource" id="Resource_kwvtv"]
+script = ExtResource("2_urinb")
+name = "Point 5"
+position = Vector2(333, 555)
+next_points = Array[int]([6])
+
+[sub_resource type="Resource" id="Resource_0krjl"]
+script = ExtResource("2_urinb")
+name = "Point 6"
+position = Vector2(554.455, 221.675)
+next_points = Array[int]([7, 3])
+
+[sub_resource type="Resource" id="Resource_majs1"]
+script = ExtResource("2_urinb")
+name = "Point 7"
+position = Vector2(333.105, 333)
+next_points = Array[int]([1, 2])
 
 [node name="TestPolygon" type="Node2D" unique_id=1445130733]
 
 [node name="RoadNetworkManager" type="Node2D" parent="." unique_id=1145180465 groups=["RoadManager"]]
 script = ExtResource("1_urinb")
 debug = true
-points = Array[ExtResource("2_urinb")]([SubResource("Resource_urinb"), SubResource("Resource_dm12r"), SubResource("Resource_q3vch"), SubResource("Resource_pqlhq")])
+points = Array[ExtResource("2_urinb")]([SubResource("Resource_urinb"), SubResource("Resource_dm12r"), SubResource("Resource_q3vch"), SubResource("Resource_pqlhq"), SubResource("Resource_khdv5"), SubResource("Resource_kwvtv"), SubResource("Resource_0krjl"), SubResource("Resource_majs1")])
 metadata/_custom_type_script = "uid://cup1qrdjgig7h"
 
 [node name="PrivateVahicle" parent="." unique_id=1629948950 instance=ExtResource("3_dm12r")]
 position = Vector2(216, 104)
-final_point_idx = 1
+final_point_idx = 7
 max_speed = 200.0

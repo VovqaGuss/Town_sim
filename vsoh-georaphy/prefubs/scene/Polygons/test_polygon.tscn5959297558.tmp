@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bivfh1aoxy3rp"]
+
+[ext_resource type="Script" uid="uid://cup1qrdjgig7h" path="res://scripts/classes/RoadNetworkManager/road_network_manager.gd" id="1_urinb"]
+[ext_resource type="Script" uid="uid://5hg8vtpkjqtv" path="res://scripts/Recources/TravelPoint.gd" id="2_urinb"]
+[ext_resource type="PackedScene" uid="uid://br1el582c6ei1" path="res://prefubs/scene/Vahicles/private_vahicle.tscn" id="3_dm12r"]
+
+[sub_resource type="Resource" id="Resource_urinb"]
+script = ExtResource("2_urinb")
+name = "Point 0"
+position = Vector2(411.765, 25)
+next_points = Array[int]([1, 2, 3])
+
+[sub_resource type="Resource" id="Resource_dm12r"]
+script = ExtResource("2_urinb")
+name = "Point 1"
+position = Vector2(72.185, 250)
+next_points = Array[int]([2])
+
+[sub_resource type="Resource" id="Resource_q3vch"]
+script = ExtResource("2_urinb")
+name = "Point 2"
+position = Vector2(125.13, 48.97)
+next_points = Array[int]([3, 0])
+
+[sub_resource type="Resource" id="Resource_pqlhq"]
+script = ExtResource("2_urinb")
+name = "Point 3"
+position = Vector2(179.675, 304)
+next_points = Array[int]([4, 1, 0, 6])
+
+[sub_resource type="Resource" id="Resource_khdv5"]
+script = ExtResource("2_urinb")
+name = "Point 4"
+position = Vector2(250, 440)
+next_points = Array[int]([5])
+
+[sub_resource type="Resource" id="Resource_kwvtv"]
+script = ExtResource("2_urinb")
+name = "Point 5"
+position = Vector2(333, 555)
+next_points = Array[int]([6])
+
+[sub_resource type="Resource" id="Resource_0krjl"]
+script = ExtResource("2_urinb")
+name = "Point 6"
+position = Vector2(554.455, 221.675)
+next_points = Array[int]([7, 3])
+
+[node name="TestPolygon" type="Node2D" unique_id=1445130733]
+
+[node name="RoadNetworkManager" type="Node2D" parent="." unique_id=1145180465 groups=["RoadManager"]]
+script = ExtResource("1_urinb")
+debug = true
+points = Array[ExtResource("2_urinb")]([SubResource("Resource_urinb"), SubResource("Resource_dm12r"), SubResource("Resource_q3vch"), SubResource("Resource_pqlhq"), SubResource("Resource_khdv5"), SubResource("Resource_kwvtv"), SubResource("Resource_0krjl")])
+metadata/_custom_type_script = "uid://cup1qrdjgig7h"
+
+[node name="PrivateVahicle" parent="." unique_id=1629948950 instance=ExtResource("3_dm12r")]
+position = Vector2(216, 104)
+final_point_idx = 6
+max_speed = 200.0
