@@ -3,16 +3,24 @@ extends Node2D
 
 @export var starter_point_idx : int = 0 ##Point indx
 @export var final_point_idx : int = 0
-@export var max_speed : float = 100
+@export var max_speed : float = 200.0
+@export var mass : float = 5
+@onready var ray_cast = $RayCasts/ObstacleAhead
+
+var max_force : float = 20
+var velocity : Vector2
 
 var road_network_manager : RoadNetworkManager
 var marchrute : Array[int]
 var current_target : int
+#signal vehicle_was_arrived
 
 func _ready() -> void:
 	_setup_road_manager()
 	marchrute = _create_marchrute(starter_point_idx, final_point_idx)
-	current_target = marchrute.front()
+	current_target = marchrute.pop_front()
+	position = road_network_manager.point_by_indx(current_target).position
+
 
 func _setup_road_manager() -> void:
 	road_network_manager = get_parent().get_tree().get_first_node_in_group("RoadManager")
@@ -31,6 +39,7 @@ func _setup_road_manager() -> void:
 	
 	#current_point = point
 	print_rich("[b][color=green]", self.name, "	: Road manager was founded! And point was successfully getted![/color][/b]")
+
 
 func _create_marchrute(start_idx : int , final_idx : int) -> Array[int]: #Возвращает массив с индексами точек маршрута
 	#ТУТ СУКА НЕ БУДЕТ ОБЪЕКТОВ ТОЛЬКО ИНДЕКСЫ!!!!! 😡
@@ -108,11 +117,28 @@ func _create_marchrute(start_idx : int , final_idx : int) -> Array[int]: #Воз
 	GlobalFunc.stack_trace()
 	return compiled_marchrute
 
+
 func _process(delta: float) -> void:
-	var velocity = (road_network_manager.point_by_indx(current_target).position - position).normalized() * max_speed
+	if road_network_manager.point_by_indx(current_target).position.distance_to(position) < 25.0 : #px
+		if !marchrute.is_empty():
+			current_target = marchrute.pop_front()
+		
+		else:
+			velocity = Vector2.ZERO
+	
 	position += velocity * delta
 	
-	look_at(road_network_manager.point_by_indx(current_target).position)
+	if velocity.length() > 0.1:
+		rotation = velocity.angle()
 	
-	if road_network_manager.point_by_indx(current_target).position.distance_to(position) < 3.5:
-		current_target = marchrute.pop_front()
+	_seek(delta)
+
+
+func _seek(delta : float) -> void:
+	var desired_velocity = (road_network_manager.point_by_indx(current_target).position - position).normalized() * max_speed
+	var steering = desired_velocity - velocity
+	
+	steering = steering.limit_length(max_force)
+	steering = steering / mass
+	
+	velocity = (velocity + steering).limit_length(max_speed)

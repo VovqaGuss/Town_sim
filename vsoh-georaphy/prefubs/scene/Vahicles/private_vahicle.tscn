@@ -42,3 +42,4 @@ rotation = -3.1415925
 [node name="ObstacleAhead" type="RayCast2D" parent="RayCasts" unique_id=1974707689]
 position = Vector2(-28, 0)
 target_position = Vector2(-27, 0)
+collide_with_areas = true
