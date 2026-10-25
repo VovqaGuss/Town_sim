@@ -7,71 +7,54 @@
 [sub_resource type="Resource" id="Resource_urinb"]
 script = ExtResource("2_urinb")
 name = "Point 0"
-position = Vector2(100.045, 100)
-next_points = Array[int]([1, 4])
+position = Vector2(333, 0)
+next_points = Array[int]([2])
 
 [sub_resource type="Resource" id="Resource_dm12r"]
 script = ExtResource("2_urinb")
 name = "Point 1"
-position = Vector2(555.37, 200)
-next_points = Array[int]([2, 4, 3])
+position = Vector2(444, 0)
+next_points = Array[int]([3])
 
 [sub_resource type="Resource" id="Resource_q3vch"]
 script = ExtResource("2_urinb")
 name = "Point 2"
-position = Vector2(444.145, 444)
-next_points = Array[int]([3, 5])
+position = Vector2(333.015, 222)
+next_points = Array[int]([4])
 
 [sub_resource type="Resource" id="Resource_pqlhq"]
 script = ExtResource("2_urinb")
 name = "Point 3"
-position = Vector2(777, 333)
-next_points = Array[int]([4, 5])
+position = Vector2(444, 222)
+next_points = Array[int]([1])
 
 [sub_resource type="Resource" id="Resource_khdv5"]
 script = ExtResource("2_urinb")
 name = "Point 4"
-position = Vector2(110.905, 333)
-next_points = Array[int]([0, 2])
+position = Vector2(222, 333)
 
 [sub_resource type="Resource" id="Resource_kwvtv"]
 script = ExtResource("2_urinb")
 name = "Point 5"
-position = Vector2(999, 444)
-next_points = Array[int]([6])
-
-[sub_resource type="Resource" id="Resource_0krjl"]
-script = ExtResource("2_urinb")
-name = "Point 6"
-position = Vector2(555, 555)
-next_points = Array[int]([7])
-
-[sub_resource type="Resource" id="Resource_majs1"]
-script = ExtResource("2_urinb")
-name = "Point 7"
-position = Vector2(171.035, 555)
-next_points = Array[int]([8])
-
-[sub_resource type="Resource" id="Resource_wejuv"]
-script = ExtResource("2_urinb")
-name = "Point 8"
-position = Vector2(66, 444)
-next_points = Array[int]([9])
-
-[sub_resource type="Resource" id="Resource_nx183"]
-script = ExtResource("2_urinb")
-name = "Point 9"
-position = Vector2(49.265, 98.095)
-next_points = Array[int]([10])
+position = Vector2(559.035, 333)
+next_points = Array[int]([3])
 
 [node name="TestPolygon" type="Node2D" unique_id=1445130733]
 
-[node name="RoadNetworkManager" type="Node2D" parent="." unique_id=1145180465 groups=["RoadManager"]]
+[node name="RoadNetworkManager" type="Node2D" parent="." unique_id=2122298103 groups=["RoadManager"]]
 script = ExtResource("1_urinb")
 debug = true
-points = Array[ExtResource("2_urinb")]([SubResource("Resource_urinb"), SubResource("Resource_dm12r"), SubResource("Resource_q3vch"), SubResource("Resource_pqlhq"), SubResource("Resource_khdv5"), SubResource("Resource_kwvtv"), SubResource("Resource_0krjl"), SubResource("Resource_majs1"), SubResource("Resource_wejuv"), SubResource("Resource_nx183")])
+points = Array[ExtResource("2_urinb")]([SubResource("Resource_urinb"), SubResource("Resource_dm12r"), SubResource("Resource_q3vch"), SubResource("Resource_pqlhq"), SubResource("Resource_khdv5"), SubResource("Resource_kwvtv")])
 metadata/_custom_type_script = "uid://cup1qrdjgig7h"
 
 [node name="PrivateVahicle" parent="." unique_id=1629948950 instance=ExtResource("3_dm12r")]
 position = Vector2(99, 98)
-final_point_idx = 9
+final_point_idx = 4
+
+[node name="PrivateVahicle2" parent="." unique_id=575774730 instance=ExtResource("3_dm12r")]
+position = Vector2(137, 171)
+starter_point_idx = 5
+final_point_idx = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=238457510]
+position = Vector2(394, 114)

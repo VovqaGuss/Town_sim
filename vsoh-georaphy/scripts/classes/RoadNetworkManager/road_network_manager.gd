@@ -69,15 +69,18 @@ func _draw() -> void:
 				draw_string(ThemeDB.fallback_font, point.position , point.name, HORIZONTAL_ALIGNMENT_CENTER, -1, ThemeDB.fallback_font_size)
 				draw_circle(point.position, 2.5, Color.WHITE)
 			
-			
+		
 		for i in range(points.size()):
 			var current_point = points[i]
-			if !current_point : continue
+			
+			if !current_point : 
+				continue
+				queue_redraw()
 			
 			for target_idx in current_point.next_points:
-			
+				
 				if target_idx >= 0 && target_idx < points.size():
 					var target_point = points[target_idx]
-				
+						
 					if target_point:
 						draw_line(current_point.position, target_point.position, Color.WHITE, 1.2)

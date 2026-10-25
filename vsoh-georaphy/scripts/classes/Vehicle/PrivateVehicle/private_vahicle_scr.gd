@@ -8,7 +8,10 @@ extends Node2D
 @onready var ray_cast = $RayCasts/ObstacleAhead
 
 var max_force : float = 20
+var max_velocity : float = 150
 var velocity : Vector2
+var desired_velocity : Vector2
+var steering : Vector2
 
 var road_network_manager : RoadNetworkManager
 var marchrute : Array[int]
@@ -119,25 +122,30 @@ func _create_marchrute(start_idx : int , final_idx : int) -> Array[int]: #Воз
 
 
 func _process(delta: float) -> void:
-	if road_network_manager.point_by_indx(current_target).position.distance_to(position) < 25.0 : #px
-		if !marchrute.is_empty():
-			current_target = marchrute.pop_front()
-		
-		else:
-			velocity = Vector2.ZERO
+	var distance = road_network_manager.point_by_indx(current_target).position.distance_to(position)
 	
-	position += velocity * delta
+	if distance < 25.0 && !marchrute.is_empty(): #px
+		current_target = marchrute.pop_front()
+	
 	
 	if velocity.length() > 0.1:
 		rotation = velocity.angle()
-	
-	_seek(delta)
+		
+	position += velocity * delta
+	_seek(delta, 55.0)
 
 
-func _seek(delta : float) -> void:
-	var desired_velocity = (road_network_manager.point_by_indx(current_target).position - position).normalized() * max_speed
-	var steering = desired_velocity - velocity
+func _seek(delta : float, showingRadius : float) -> void:
+	desired_velocity = (road_network_manager.point_by_indx(current_target).position - position)
+	var distance = desired_velocity.length()
 	
+	if distance < showingRadius && current_target == final_point_idx:
+		desired_velocity = desired_velocity.normalized() * max_velocity * (distance / showingRadius)
+	
+	else:
+		desired_velocity = desired_velocity.normalized() * max_velocity
+	
+	steering = desired_velocity - velocity
 	steering = steering.limit_length(max_force)
 	steering = steering / mass
 	
