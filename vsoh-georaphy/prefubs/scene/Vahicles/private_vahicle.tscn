@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://br1el582c6ei1"]
 
-[ext_resource type="Script" uid="uid://du0x2il84vcna" path="res://scripts/classes/Vehicle/PrivateVehicle/private_vahicle_scr.gd" id="1_oufrr"]
+[ext_resource type="Script" uid="uid://du0x2il84vcna" path="res://scripts/classes/Road_traffic/Vehicle/PrivateVehicle/private_vahicle_scr.gd" id="1_oufrr"]
 [ext_resource type="Texture2D" uid="uid://dwg68uoxlsbus" path="res://recousres/sprites/shelds/Car.png" id="2_poc4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quss6"]
@@ -40,6 +40,6 @@ debug_color = Color(9.62615e-07, 0.6037063, 0.68016356, 0.41960785)
 rotation = -3.1415925
 
 [node name="ObstacleAhead" type="RayCast2D" parent="RayCasts" unique_id=1974707689]
-position = Vector2(-28, 0)
-target_position = Vector2(-27, 0)
+position = Vector2(-29, 4.378878e-06)
+target_position = Vector2(-95, 1.4106105e-05)
 collide_with_areas = true
