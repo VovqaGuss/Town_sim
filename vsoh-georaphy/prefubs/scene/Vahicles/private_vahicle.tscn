@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://br1el582c6ei1"]
 
-[ext_resource type="Script" uid="uid://du0x2il84vcna" path="res://scripts/classes/Road_traffic/Vehicle/PrivateVehicle/private_vahicle_scr.gd" id="1_oufrr"]
+[ext_resource type="Script" uid="uid://bsltg8nnds1pf" path="res://scripts/classes/Road_traffic/Vehicle/PrivateVehicle/private_vehicle_scr.gd" id="1_poc4b"]
 [ext_resource type="Texture2D" uid="uid://dwg68uoxlsbus" path="res://recousres/sprites/shelds/Car.png" id="2_poc4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_quss6"]
 size = Vector2(60, 26)
 
-[node name="PrivateVahicle" type="Node2D" unique_id=575774730]
-script = ExtResource("1_oufrr")
-metadata/_custom_type_script = "uid://du0x2il84vcna"
+[node name="PrivateVehicle" type="Node2D" unique_id=575774730]
+script = ExtResource("1_poc4b")
 
 [node name="Body" type="Node2D" parent="." unique_id=969850357]
 rotation = -1.5707964

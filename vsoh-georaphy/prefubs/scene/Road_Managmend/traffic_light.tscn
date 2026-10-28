@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://lcs7ccq5xs1v"]
+
+[ext_resource type="Script" uid="uid://dnah5gsectfum" path="res://scripts/classes/Road_traffic/TrafficLight/traffic_light_scr.gd" id="1_q1i7t"]
+
+[node name="TrafficLight" type="Node2D" unique_id=614520602]
+script = ExtResource("1_q1i7t")
+
+[node name="Timers" type="Node2D" parent="." unique_id=438800020]
+
+[node name="Timer" type="Timer" parent="Timers" unique_id=890260439]

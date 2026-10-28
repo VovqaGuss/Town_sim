@@ -1,4 +1,4 @@
-class_name PrivateVahicle
+class_name PrivateVehicle
 extends Node2D
 
 @export var starter_point_idx : int = 0 ##Point indx
@@ -97,7 +97,7 @@ func _create_marchrute(start_idx : int , final_idx : int) -> Array[int]: #Воз
 			if distance[node_idx] < min_dist:
 				min_dist = distance[node_idx]
 				next_node = node_idx
-		
+			
 		if next_node == -1:
 			print("Путь не найден!")
 			break
@@ -107,11 +107,13 @@ func _create_marchrute(start_idx : int , final_idx : int) -> Array[int]: #Воз
 	
 	
 	var curr = final_idx
+	var i : int = 0
+	
+	print(parents)
 	
 	while curr != start_idx:
-		
 		compiled_marchrute.append(curr)
-		curr = parents[curr]
+		curr = parents[curr] #parents уже заполнен самыми близкими соседями всех точек
 	
 	compiled_marchrute.append(start_idx)
 	compiled_marchrute.reverse()

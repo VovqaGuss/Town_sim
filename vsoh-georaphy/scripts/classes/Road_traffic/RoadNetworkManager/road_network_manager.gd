@@ -3,7 +3,8 @@ class_name RoadNetworkManager
 extends Node2D
 
 ##---------------TASK LIST -----------------
-## 1. Add J-Gizmos
+## 1. Add J-Gizmos ✔
+## 2. Try optimaze J-Gizmos (future)
 
 @export_subgroup("PointManager")
 @export_tool_button("Create new point", "CurveCreate") var create_new_point_button = _create_point
@@ -16,7 +17,7 @@ extends Node2D
 		queue_redraw()
 		points = value
 
-var gizmos : Array = []
+var gizmos : Array[J_Gizmo2D_Handle] = []
 
 func _enter_tree() -> void:
 	if Engine.is_editor_hint():
@@ -34,19 +35,19 @@ func _process(delta: float) -> void:
 			_refresh_gizmos()
 
 func _refresh_gizmos() -> void:
-	gizmos.clear()
+	gizmos.clear() #Очищается текущий массив gizmos
 	
-	for i in range(points.size()):
+	for i in range(points.size()): #Создается столько же Gizmo как и колличество элемнтов в Points
 		var gizmo := J_Gizmo2D_Handle.new()
 		
-		gizmo.quick_setup(
+		gizmo.quick_setup( #Подключаем функции к каждому Gizmo
 			_on_gizmo_drag.bind(i),
 			'_undo_drag',
 			'_redo_drag'
 		)
 		
-		gizmo.position = points[i].position
-		gizmos.append(gizmo)
+		gizmo.position = points[i].position #при спавне будет позиция point
+		gizmos.append(gizmo) #Добавляется в массив
 	
 	if Engine.is_editor_hint():
 		var base_control = EditorInterface.get_base_control()
