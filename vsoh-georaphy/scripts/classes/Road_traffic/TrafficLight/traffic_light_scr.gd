@@ -25,21 +25,20 @@ signal signal_light_was_chaged
 
 var current_light : Lights = Lights.RED
 
-const SECOND = 60
-const MINUTE = 60
-var seconds = 0
-var num = 0
+var accumulator_time : float = 0.0
 
 func _process(delta: float) -> void:
-	num += 1
-	if num == SECOND:
-		print("Second!")
-		seconds += 1
-		num = 0
+	accumulator_time += delta
 	
-	if seconds == MINUTE:
-		print("Minute!")
-		seconds = 0
+	if accumulator_time > Durations[current_light]:
+		accumulator_time = 0.0
+		_to_next_light()
+
+func _to_next_light() -> void:
+	match current_light:
+		Lights.RED: _change_light(Lights.YELLOW)
+		Lights.YELLOW: _change_light(Lights.GREEN)
+		Lights.GREEN : _change_light(Lights.RED)
 
 func _change_light(inpt_light : Lights) -> void:
 	
