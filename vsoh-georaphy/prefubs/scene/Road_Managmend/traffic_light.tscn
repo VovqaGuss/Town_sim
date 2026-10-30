@@ -1,12 +1,49 @@
 [gd_scene format=3 uid="uid://lcs7ccq5xs1v"]
 
 [ext_resource type="Script" uid="uid://dnah5gsectfum" path="res://scripts/classes/Road_traffic/TrafficLight/traffic_light_scr.gd" id="1_q1i7t"]
-[ext_resource type="Script" uid="uid://b6d6wvfpvofkf" path="res://scripts/classes/Road_traffic/MarchruteManager/matchrute_manager.gd" id="2_yus42"]
+[ext_resource type="Texture2D" uid="uid://7s40g20qwfo2" path="res://recousres/sprites/shelds/TrafficLights.png" id="2_yus42"]
 
-[node name="TrafficLight" type="Node2D" unique_id=614520602]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ikex"]
+size = Vector2(64, 64)
+
+[node name="TrafficLight" type="Node2D" unique_id=614520602 node_paths=PackedStringArray("colizion", "light_sprite")]
+position = Vector2(0, 16)
 script = ExtResource("1_q1i7t")
+colizion = NodePath("Area/Area2D/CollisionShape2D")
+light_sprite = NodePath("Sprites/Light")
+LightsFrames = {
+0: 5,
+1: 11,
+2: 8
+}
+Durations = {
+0: 1.0,
+1: 1.0,
+2: 1.0
+}
 
-[node name="MarchruteManager" type="Node" parent="." unique_id=1182261335]
-script = ExtResource("2_yus42")
-debug = true
-metadata/_custom_type_script = "uid://b6d6wvfpvofkf"
+[node name="Sprites" type="Node2D" parent="." unique_id=1342337309]
+position = Vector2(0, -64)
+scale = Vector2(1.5, 1.5)
+
+[node name="TrafficLight" type="Sprite2D" parent="Sprites" unique_id=1126639294]
+texture = ExtResource("2_yus42")
+hframes = 4
+vframes = 3
+frame = 2
+
+[node name="Light" type="Sprite2D" parent="Sprites" unique_id=1443122940]
+texture = ExtResource("2_yus42")
+hframes = 4
+vframes = 3
+frame = 8
+
+[node name="Area" type="Node2D" parent="." unique_id=304024318]
+position = Vector2(0, -16)
+
+[node name="Area2D" type="Area2D" parent="Area" unique_id=1431004826]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area/Area2D" unique_id=2142917160]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_8ikex")
+disabled = true

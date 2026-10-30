@@ -11,6 +11,10 @@ enum Units_of_time {
 	Second # 2
 }
 
+
+## 0 - sec
+## 1 - min
+## 2 - hours
 var time = {
 	Units_of_time.Hour : 0,
 	Units_of_time.Minute : 0,
@@ -30,9 +34,9 @@ func _process(delta: float) -> void:
 	if miliseconds >= 1.0:
 		miliseconds -= 1.0
 		
-		clock()
+		_clock()
 
-func clock() -> void:
+func _clock() -> void:
 	
 	time[0] += 1
 	
