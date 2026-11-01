@@ -61,6 +61,24 @@ next_points = Array[int]([0])
 
 [node name="TestPolygon" type="Node2D" unique_id=1445130733]
 
+[node name="TrafficLight" parent="." unique_id=614520602 instance=ExtResource("4_dm12r")]
+position = Vector2(512, 320)
+current_light = 0
+Durations = {
+0: 3.0,
+1: 1.0,
+2: 2.0
+}
+
+[node name="TrafficLight2" parent="." unique_id=1848958917 instance=ExtResource("4_dm12r")]
+position = Vector2(640, 144)
+starter_light = 2
+Durations = {
+0: 3.0,
+1: 1.0,
+2: 3.0
+}
+
 [node name="RoadNetworkManager" type="Node2D" parent="." unique_id=2018466038 groups=["RoadManager"]]
 script = ExtResource("1_urinb")
 grid_size = Vector2(16, 16)
@@ -76,29 +94,7 @@ position = Vector2(224, 320)
 starter_point_idx = 7
 final_point_idx = 4
 
-[node name="PrivateVehicle2" parent="." unique_id=72642157 instance=ExtResource("3_dm12r")]
-position = Vector2(256, 400)
+[node name="PrivateVehicle2" parent="." unique_id=1826481552 instance=ExtResource("3_dm12r")]
+position = Vector2(672, 320)
 starter_point_idx = 5
-
-[node name="PrivateVehicle3" parent="." unique_id=2003273016 instance=ExtResource("3_dm12r")]
-position = Vector2(144, 480)
-starter_point_idx = 6
-final_point_idx = 2
-
-[node name="PrivateVehicle4" parent="." unique_id=1820527693 instance=ExtResource("3_dm12r")]
-position = Vector2(128, 368)
-starter_point_idx = 8
 final_point_idx = 3
-
-[node name="PrivateVehicle5" parent="." unique_id=522259577 instance=ExtResource("3_dm12r")]
-position = Vector2(368, 496)
-starter_point_idx = 6
-final_point_idx = 3
-
-[node name="TrafficLight" parent="." unique_id=614520602 instance=ExtResource("4_dm12r")]
-position = Vector2(640, 160)
-Durations = {
-0: 5.0,
-1: 1.0,
-2: 1.0
-}

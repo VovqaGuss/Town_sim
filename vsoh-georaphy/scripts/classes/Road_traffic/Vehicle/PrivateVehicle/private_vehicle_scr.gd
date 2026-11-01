@@ -1,14 +1,17 @@
 class_name PrivateVehicle
 extends Node2D
+#СЮДА НЕ ЛЕЗТЬ!
 
 @export var starter_point_idx : int = 0 ##Point indx
 @export var final_point_idx : int = 0
 @export var max_speed : float = 100.0 ## max 200
 @export var mass : float = 5.5
-@onready var ray_cast = $RayCasts/ObstacleAhead
+@onready var ray_cast = $RayCasts
+
 
 var max_force : float = 15
 var max_velocity : float = 150
+
 var brake_radius : float = 200
 
 var velocity : Vector2
@@ -146,9 +149,8 @@ func _seek(showingRadius : float) -> void:
 	
 	var current_speed_limit = max_velocity
 	
-	if ray_cast.is_colliding():
-		var hit_point = ray_cast.get_collision_point()
-		var distance_to_obstacle = position.distance_to(hit_point)
+	if ray_cast.once_of_rays_colliding():
+		var distance_to_obstacle = ray_cast.get_nearest_distance()
 		
 		if distance_to_obstacle < brake_radius:
 			current_speed_limit = min(current_speed_limit, max_velocity * (distance_to_obstacle / brake_radius))

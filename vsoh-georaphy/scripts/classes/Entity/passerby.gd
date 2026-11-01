@@ -1,0 +1,2 @@
+class_name Passerby
+extends CharacterBody2D
